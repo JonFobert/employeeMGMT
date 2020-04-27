@@ -9,14 +9,22 @@ public:
     string name;
     int salary;
 
-    void set_values(string, int);
+    //Constructor function for the class. Doesn't need a return type.
+    Employee();
+    Employee(string, int);
     int monthlySalary()
     {
         return salary / 12;
     }
 };
 
-void Employee::set_values(string employeeName, int employeeSalary)
+Employee::Employee()
+{
+    name = "noname";
+    salary = 0;
+}
+
+Employee::Employee(string employeeName, int employeeSalary)
 {
     name = employeeName;
     salary = employeeSalary;
@@ -38,20 +46,18 @@ int main()
     getline(cin, employeeOne.name);
     cout << "Enter employee annual salary: ";
     cin >> employeeOne.salary;
-    cout << "The first employee is " << employeeOne.name << "\nand their annual salary is " << employeeOne.salary;
+    cout << "The first employee is " << employeeOne.name << "\nand their annual salary is " << employeeOne.salary << "\n";
 
-    Employee employeeTwo;
-    cout << "Enter employee name: ";
-    //clear the cin buffer. See https://stackoverflow.com/questions/25475384/when-and-why-do-i-need-to-use-cin-ignore-in-c
-    cin.ignore();
-    getline(cin, employeeTwo.name);
-    cout << "Enter employee annual salary: ";
-    cin >> employeeTwo.salary;
-    cout << "The second employee is " << employeeTwo.name << "\nand their annual salary is " << employeeTwo.salary;
-
-    //if (addEmployee())
-    //{
-    //};
-
+    if (addEmployee())
+    {
+        Employee employeeTwo;
+        cout << "Enter employee name: ";
+        //clear the cin buffer. Seehttps://www.geeksforgeeks.org/problem-with-scanf-when-there-is-fgetsgetsscanf-after-it/ and  https://stackoverflow.com/questions/25475384/when-and-why-do-i-need-to-use-cin-ignore-in-c
+        cin.ignore();
+        getline(cin, employeeTwo.name);
+        cout << "Enter employee annual salary: ";
+        cin >> employeeTwo.salary;
+        cout << "The second employee is " << employeeTwo.name << "\nand their annual salary is " << employeeTwo.salary;
+    };
     return (0);
 }
