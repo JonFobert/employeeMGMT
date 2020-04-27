@@ -30,34 +30,113 @@ Employee::Employee(string employeeName, int employeeSalary)
     salary = employeeSalary;
 }
 
-bool addEmployee()
+class IndvContributer : public Employee
 {
-    bool response;
-    cout << "Would you like to add another employee?\nEnter 1 for yes\n enter 0 for no:\n";
-    cin >> response;
-    return response;
+public:
+    string jobFunction;
+    IndvContributer();
+    IndvContributer(string employeeName, int employeeSalary, string jobFunction);
+
+    static bool askToAddContributer()
+    {
+        bool response;
+        cout << "Would you like to add another individuaContributer?\nEnter 1 for yes\n enter 0 for no:\n";
+        cin >> response;
+        return response;
+    }
+
+    static void addIndvContributer()
+    {
+        IndvContributer IndvContributerOne;
+        cout << "Enter individual contributer name: ";
+        getline(cin, IndvContributerOne.name);
+        cout << "Enter individual contributer annual salary: ";
+        cin >> IndvContributerOne.salary;
+        cin.ignore();
+        cout << "Enter their job function: ";
+        cin.ignore();
+        cin >> IndvContributerOne.jobFunction;
+        cout << "The first employee is " << IndvContributerOne.name << "\nand their annual salary is " << IndvContributerOne.salary << "\nand their job is " << IndvContributerOne.jobFunction;
+    }
+};
+
+IndvContributer::IndvContributer()
+{
+    name = "noname";
+    salary = 0;
+    jobFunction = "nojob";
+}
+
+IndvContributer::IndvContributer(string employeeName, int employeeSalary, string theirJobFunction)
+{
+    name = employeeName;
+    salary = employeeSalary;
+    jobFunction = theirJobFunction;
+}
+
+class Executive : public Employee
+{
+public:
+    string team;
+    Executive();
+    Executive(string employeeName, int employeeSalary, string team);
+
+    static bool askToAddExecutive()
+    {
+        bool response;
+        cout << "Would you like to add another Executive?\nEnter 1 for yes\n enter 0 for no:\n";
+        cin >> response;
+        return response;
+    }
+
+    static void addExecutive()
+    {
+        Executive ExecutiveOne;
+        cout << "Enter Executive name: ";
+        getline(cin, ExecutiveOne.name);
+        cout << "Enter Executive annual salary: ";
+        cin >> ExecutiveOne.salary;
+        cin.ignore();
+        cout << "Enter the team they lead: ";
+        cin.ignore();
+        cin >> ExecutiveOne.team;
+        cout << "The first employee is " << ExecutiveOne.name << "\nand their annual salary is " << ExecutiveOne.salary << "\n and they lead this team: " << ExecutiveOne.team;
+    }
+};
+
+Executive::Executive()
+{
+    name = "noname";
+    salary = 0;
+    team = "noteam";
+}
+
+Executive::Executive(string employeeName, int employeeSalary, string teamTheyLead)
+{
+    name = employeeName;
+    salary = employeeSalary;
+    team = teamTheyLead;
 }
 
 int main()
 {
 
-    Employee employeeOne;
-    cout << "Enter employee name: ";
-    getline(cin, employeeOne.name);
-    cout << "Enter employee annual salary: ";
-    cin >> employeeOne.salary;
-    cout << "The first employee is " << employeeOne.name << "\nand their annual salary is " << employeeOne.salary << "\n";
+    bool moreEmployeesToAdd = true;
 
-    if (addEmployee())
+    while (moreEmployeesToAdd == true)
     {
-        Employee employeeTwo;
-        cout << "Enter employee name: ";
-        //clear the cin buffer. Seehttps://www.geeksforgeeks.org/problem-with-scanf-when-there-is-fgetsgetsscanf-after-it/ and  https://stackoverflow.com/questions/25475384/when-and-why-do-i-need-to-use-cin-ignore-in-c
-        cin.ignore();
-        getline(cin, employeeTwo.name);
-        cout << "Enter employee annual salary: ";
-        cin >> employeeTwo.salary;
-        cout << "The second employee is " << employeeTwo.name << "\nand their annual salary is " << employeeTwo.salary;
-    };
+        if (IndvContributer::askToAddContributer())
+        {
+            IndvContributer::addIndvContributer();
+        }
+        else if (Executive::askToAddExecutive())
+        {
+            Executive::addExecutive();
+        }
+        else
+        {
+            moreEmployeesToAdd = false;
+        }
+    }
     return (0);
 }
