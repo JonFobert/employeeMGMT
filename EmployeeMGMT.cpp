@@ -40,7 +40,7 @@ public:
     static bool askToAddContributer()
     {
         bool response;
-        cout << "Would you like to add another individuaContributer?\nEnter 1 for yes\n enter 0 for no:\n";
+        cout << "\nWould you like to add another individuaContributer?\nEnter 1 for yes\n enter 0 for no:\n";
         cin >> response;
         return response;
     }
@@ -49,6 +49,7 @@ public:
     {
         IndvContributer IndvContributerOne;
         cout << "Enter individual contributer name: ";
+        cin.ignore();
         getline(cin, IndvContributerOne.name);
         cout << "Enter individual contributer annual salary: ";
         cin >> IndvContributerOne.salary;
@@ -84,7 +85,7 @@ public:
     static bool askToAddExecutive()
     {
         bool response;
-        cout << "Would you like to add another Executive?\nEnter 1 for yes\n enter 0 for no:\n";
+        cout << "\nWould you like to add another Executive?\nEnter 1 for yes\n enter 0 for no:\n";
         cin >> response;
         return response;
     }
@@ -93,6 +94,7 @@ public:
     {
         Executive ExecutiveOne;
         cout << "Enter Executive name: ";
+        cin.ignore();
         getline(cin, ExecutiveOne.name);
         cout << "Enter Executive annual salary: ";
         cin >> ExecutiveOne.salary;
