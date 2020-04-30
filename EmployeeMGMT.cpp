@@ -3,6 +3,13 @@
 #include <sstream>
 using namespace std;
 
+struct EmpolyeeData
+{
+    string name;
+    int salary;
+    string otherData;
+}
+
 class Employee
 {
 public:
@@ -124,7 +131,6 @@ int main()
 {
 
     bool moreEmployeesToAdd = true;
-
     while (moreEmployeesToAdd == true)
     {
         if (IndvContributer::askToAddContributer())
