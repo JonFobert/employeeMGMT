@@ -92,7 +92,7 @@ public:
         return response;
     }
 
-    static void addExecutive()
+    static void addExecutive(int numOfExec, Executive allExecs[])
     {
         Executive ExecutiveOne;
         cout << "Enter Executive name: ";
@@ -105,8 +105,28 @@ public:
         cin.ignore();
         cin >> ExecutiveOne.team;
         cout << "The first employee is " << ExecutiveOne.name << "\nand their annual salary is " << ExecutiveOne.salary << "\n and they lead this team: " << ExecutiveOne.team;
+        allExecs[(numOfExec - 1)] = ExecutiveOne;
     }
 };
+
+/* Replaced by new function that 
+static void addExecutive()
+{
+    Executive ExecutiveOne;
+    cout << "Enter Executive name: ";
+    cin.ignore();
+    getline(cin, ExecutiveOne.name);
+    cout << "Enter Executive annual salary: ";
+    cin >> ExecutiveOne.salary;
+    cin.ignore();
+    cout << "Enter the team they lead: ";
+    cin.ignore();
+    cin >> ExecutiveOne.team;
+    cout << "The first employee is " << ExecutiveOne.name << "\nand their annual salary is " << ExecutiveOne.salary << "\n and they lead this team: " << ExecutiveOne.team;
+}
+}
+*/
+;
 
 Executive::Executive()
 {
@@ -128,6 +148,9 @@ int main()
     int numIndvContrib = 0;
     IndvContributer allContributers[50];
 
+    int numExecs = 0;
+    Executive allExecs[50];
+
     vector<Employee *> employeesVec;
 
     bool moreEmployeesToAdd = true;
@@ -146,7 +169,13 @@ int main()
         }
         else if (Executive::askToAddExecutive())
         {
-            Executive::addExecutive();
+            numExecs++;
+            Executive::addExecutive(numExecs, allExecs);
+            for (int i = 0; i < numExecs; i++)
+            {
+                cout << "\n\n"
+                     << allExecs[(numExecs - 1)].name;
+            }
         }
         else
         {
