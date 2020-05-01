@@ -1,14 +1,8 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <vector>
 using namespace std;
-
-struct EmpolyeeData
-{
-    string name;
-    int salary;
-    string otherData;
-}
 
 class Employee
 {
@@ -52,7 +46,7 @@ public:
         return response;
     }
 
-    static void addIndvContributer()
+    static void addIndvContributer(int numOfIndvContrToAdd, IndvContributer allContributers[])
     {
         IndvContributer IndvContributerOne;
         cout << "Enter individual contributer name: ";
@@ -65,6 +59,7 @@ public:
         cin.ignore();
         cin >> IndvContributerOne.jobFunction;
         cout << "The first employee is " << IndvContributerOne.name << "\nand their annual salary is " << IndvContributerOne.salary << "\nand their job is " << IndvContributerOne.jobFunction;
+        allContributers[(numOfIndvContrToAdd - 1)] = IndvContributerOne;
     }
 };
 
@@ -130,12 +125,24 @@ Executive::Executive(string employeeName, int employeeSalary, string teamTheyLea
 int main()
 {
 
+    int numIndvContrib = 0;
+    IndvContributer allContributers[50];
+
+    vector<Employee *> employeesVec;
+
     bool moreEmployeesToAdd = true;
     while (moreEmployeesToAdd == true)
     {
         if (IndvContributer::askToAddContributer())
+        //if (true)
         {
-            IndvContributer::addIndvContributer();
+            numIndvContrib++;
+            IndvContributer::addIndvContributer(numIndvContrib, allContributers);
+            for (int i = 0; i < numIndvContrib; i++)
+            {
+                cout << "\n\n"
+                     << allContributers[(numIndvContrib - 1)].name;
+            }
         }
         else if (Executive::askToAddExecutive())
         {
